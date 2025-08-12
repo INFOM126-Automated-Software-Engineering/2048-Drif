@@ -304,9 +304,7 @@ public class Test2048 {
         assertTrue(gc.getHighestScore() == 0);
     }
 
-}
-
-@Test
+    @Test
 public void testStartGame_firstTileIs4_then2() {
     GameController gc = new GameController();
     gc.startGame(); // adds 2 tiles using "first empty from top-left"
@@ -371,4 +369,7 @@ public void testGameOver_afterOneValidMove_thenNoMovesLeft() {
     // Assert: a move happened, and since there are no merges possible afterwards, the game should be over
     assertTrue(moved);
     assertEquals(GameState.over, gc.getGamestate());
+    }
+
+
 }
