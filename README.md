@@ -83,7 +83,7 @@ We welcome contributions! Please read:
 
 Open issues with the right template and label. For questions/ideas, use **Discussions**:
 
-- [https://github.com/sdrif/2048-Drif/discussions](https://github.com/sdrif/2048-Drif/discussions)
+- [[https://github.com/sdrif/2048-Drif/discussions](https://github.com/sdrif/2048-Drif/discussions](https://github.com/INFOM126-Automated-Software-Engineering/2048-Drif/discussions))
 
 ---
 
