@@ -81,9 +81,9 @@ We welcome contributions! Please read:
 - [`docs/CONTRIBUTOR.md`](docs/CONTRIBUTOR.md)
 - [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md)
 
-Open issues with the right template and label. For questions/ideas, use **Discussions**:
+[Open issues with the right template and label. For questions/ideas, use **Discussions**:
 
-- [https://github.com/sdrif/2048-Drif/discussions](https://github.com/sdrif/2048-Drif/discussions](https://github.com/INFOM126-Automated-Software-Engineering/2048-Drif/discussions)
+- [**GitHub Discussions**](https://github.com/sdrif/2048-Drif/discussions).
 
 ---
 
