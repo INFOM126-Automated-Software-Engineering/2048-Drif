@@ -4,8 +4,6 @@
 
 A clean Java 17 implementation of the classic **2048** game (Swing). The repo ships with a complete CI: tests + coverage (JaCoCo, 80% gate), Checkstyle, PIT mutation testing, release packaging, and telemetry.
 
-> If your repository name differs, update the badge URLs above.
-
 ---
 
 ## Features
