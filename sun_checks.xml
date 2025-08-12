@@ -6,11 +6,18 @@
   <property name="severity" value="warning"/>
   <property name="fileExtensions" value="java"/>
 
+  <!-- Ces deux règles doivent être AU NIVEAU Checker, pas sous TreeWalker -->
+  <module name="LineLength">
+    <property name="max" value="120"/>
+    <property name="ignorePattern" value="^package.*|^import.*"/>
+  </module>
+  <module name="JavadocPackage"/>
+
   <module name="NewlineAtEndOfFile"/>
   <module name="FileTabCharacter"/>
 
   <module name="TreeWalker">
-    <!-- Import & whitespace -->
+    <!-- Imports & espaces -->
     <module name="AvoidStarImport"/>
     <module name="UnusedImports"/>
     <module name="WhitespaceAround"/>
@@ -18,19 +25,10 @@
     <module name="NoWhitespaceAfter"/>
     <module name="EmptyBlock"/>
 
-    <!-- Nommage de base -->
+    <!-- Nommage -->
     <module name="TypeName"/>
     <module name="MethodName"/>
     <module name="ParameterName"/>
     <module name="LocalVariableName"/>
-
-    <!-- Longueur & lisibilité -->
-    <module name="LineLength">
-      <property name="max" value="120"/>
-      <property name="ignorePattern" value="^package.*|^import.*"/>
-    </module>
-
-    <!-- Un peu de javadoc sur packages -->
-    <module name="JavadocPackage"/>
   </module>
 </module>

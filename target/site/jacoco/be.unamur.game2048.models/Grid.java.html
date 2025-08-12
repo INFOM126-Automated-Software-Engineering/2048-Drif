@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Grid.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">2048</a> &gt; <a href="index.source.html" class="el_package">be.unamur.game2048.models</a> &gt; <span class="el_source">Grid.java</span></div><h1>Grid.java</h1><pre class="source lang-java linenums">package be.unamur.game2048.models;
+
+public class Grid {
+    private Tile[][] tiles;
+
+<span class="fc" id="L6">    public Grid(Tile[][] tiles) {</span>
+<span class="fc" id="L7">        this.tiles = tiles;</span>
+<span class="fc" id="L8">    }</span>
+
+<span class="fc" id="L10">    public Grid() {</span>
+<span class="fc" id="L11">        this.tiles = new Tile[GameParams.sideLength][GameParams.sideLength];</span>
+<span class="fc" id="L12">    }</span>
+
+    public Tile getTile(int row, int col) {
+<span class="fc" id="L15">        return tiles[row][col];</span>
+    }
+
+    public Tile getTile(int pos) {
+<span class="fc" id="L19">        int row = pos / GameParams.sideLength;</span>
+<span class="fc" id="L20">        int col = pos % GameParams.sideLength;</span>
+<span class="fc" id="L21">        return getTile(row, col);</span>
+    }
+
+    public Tile[] getRow(int row) {
+<span class="fc" id="L25">        return tiles[row].clone();</span>
+    }
+
+    public Tile[] getCol(int col) {
+<span class="fc" id="L29">        Tile[] colTiles = new Tile[GameParams.sideLength];</span>
+<span class="fc bfc" id="L30" title="All 2 branches covered.">        for (int r = 0; r &lt; GameParams.sideLength; r++)</span>
+<span class="fc" id="L31">            colTiles[r] = tiles[r][col];</span>
+<span class="fc" id="L32">        return colTiles;</span>
+    }
+
+    public void setTile(int pos, Tile tile) {
+<span class="fc" id="L36">        int row = pos / GameParams.sideLength;</span>
+<span class="fc" id="L37">        int col = pos % GameParams.sideLength;</span>
+<span class="fc" id="L38">        this.tiles[row][col] = tile;</span>
+<span class="fc" id="L39">    }</span>
+
+    public int getLength() {
+<span class="fc" id="L42">        return tiles.length;</span>
+    }
+
+    public void clearMerged() {
+<span class="fc bfc" id="L46" title="All 2 branches covered.">        for (Tile[] row : tiles)</span>
+<span class="fc bfc" id="L47" title="All 2 branches covered.">            for (Tile tile : row)</span>
+<span class="fc bfc" id="L48" title="All 2 branches covered.">                if (tile != null)</span>
+<span class="fc" id="L49">                    tile.setMerged(false);</span>
+<span class="fc" id="L50">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

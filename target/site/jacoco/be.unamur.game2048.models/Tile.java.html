@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Tile.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">2048</a> &gt; <a href="index.source.html" class="el_package">be.unamur.game2048.models</a> &gt; <span class="el_source">Tile.java</span></div><h1>Tile.java</h1><pre class="source lang-java linenums">package be.unamur.game2048.models;
+
+/**
+ * Un objet qui représente une tuile dans le jeu.
+ */
+<span class="fc" id="L6">public class Tile {</span>
+
+
+
+    /**
+     * Si la tuile a déjà été fusionnée ou non pendant ce tour.
+     */
+    private boolean isMerged;
+    /**
+     * La valeur de la tuile, doit être une puissance de 2.
+     */
+    private Integer value;
+
+    private int getNearestPower2(int value) {
+<span class="fc" id="L20">        double exponent = Math.log(value) / Math.log(2);</span>
+<span class="fc" id="L21">        return (int) Math.pow(2, Math.round(exponent));</span>
+    }
+
+<span class="fc" id="L24">    public Tile(Integer value) {</span>
+<span class="pc bpc" id="L25" title="1 of 2 branches missed.">        assert value != null;</span>
+<span class="fc" id="L26">        this.value = getNearestPower2(value);</span>
+<span class="fc" id="L27">        this.isMerged = false;</span>
+<span class="fc" id="L28">    }</span>
+
+    public int getValue() {
+<span class="fc" id="L31">        return value;</span>
+    }
+
+    public boolean isMerged() {
+<span class="fc" id="L35">        return isMerged;</span>
+    }
+
+    /**
+     * @return si les deux tuiles peuvent être fusionnées.
+     */
+    public boolean canMergeWith(Tile other) {
+<span class="fc bfc" id="L42" title="All 2 branches covered.">        if (other == null)</span>
+<span class="fc" id="L43">            return false;</span>
+<span class="pc bpc" id="L44" title="1 of 4 branches missed.">        if (this.isMerged || other.isMerged)</span>
+<span class="fc" id="L45">            return false;</span>
+<span class="fc bfc" id="L46" title="All 2 branches covered.">        return this.value == other.getValue();</span>
+    }
+
+    /**
+     * Fusionne cette tuile avec une autre.
+     * @return la somme des valeurs des deux tuiles, si la fusion est impossible, renvoie -1.
+     */
+    public int mergeWith(Tile other) {
+<span class="fc bfc" id="L54" title="All 2 branches covered.">        if (!canMergeWith(other))</span>
+<span class="fc" id="L55">            return -1;</span>
+<span class="fc" id="L56">        this.value += other.value;</span>
+<span class="fc" id="L57">        setMerged(true);</span>
+<span class="fc" id="L58">        return this.value;</span>
+    }
+
+    public void setMerged(boolean merged) {
+<span class="fc" id="L62">        isMerged = merged;</span>
+<span class="fc" id="L63">    }</span>
+
+    public String toString() {
+<span class="fc" id="L66">        return value.toString();</span>
+    }
+
+    public boolean equals(Object other) {
+<span class="fc bfc" id="L70" title="All 2 branches covered.">        if(other == null)</span>
+<span class="fc" id="L71">            return false;</span>
+        // Si les classes des deux objets ne sont pas les mêmes.
+<span class="fc bfc" id="L73" title="All 2 branches covered.">        if (this.getClass() != other.getClass())</span>
+<span class="fc" id="L74">            return false;</span>
+<span class="fc bfc" id="L75" title="All 2 branches covered.">        return this.getValue() == ((Tile) other).getValue();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
