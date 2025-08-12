@@ -305,3 +305,70 @@ public class Test2048 {
     }
 
 }
+
+@Test
+public void testStartGame_firstTileIs4_then2() {
+    GameController gc = new GameController();
+    gc.startGame(); // adds 2 tiles using "first empty from top-left"
+
+    Grid grid = gc.getGrid();
+    assertNotNull(grid);
+
+    // By design: first added when tileAdded==0 is 4, then a 2 just after.
+    assertEquals(4, grid.getTile(0).getValue());
+    assertEquals(2, grid.getTile(1).getValue());
+}
+
+@Test
+public void testMoveRight_merges1024_into2048_andWins() {
+    // Arrange: two adjacent 1024 on the top row, moving right should merge to 2048
+    Tile[][] tiles = new Tile[GameParams.sideLength][GameParams.sideLength];
+    tiles[0][2] = new Tile(1024);
+    tiles[0][3] = new Tile(1024);
+
+    GameController gc = new GameController();
+    gc.startGame(tiles);
+    assertEquals(GameState.running, gc.getGamestate());
+
+    // Act
+    boolean moved = gc.moveRight(false);
+
+    // Assert
+    assertTrue(moved);
+    assertEquals(GameState.won, gc.getGamestate());
+    assertEquals(2048, gc.getHighestScore());
+    assertNotNull(gc.getGrid().getTile(0, 3));
+    assertEquals(2048, gc.getGrid().getTile(0, 3).getValue());
+    assertNull(gc.getGrid().getTile(0, 2));
+}
+
+@Test
+public void testGameOver_afterOneValidMove_thenNoMovesLeft() {
+    // Arrange: checkerboard (no merges anywhere) with a single empty at (0,0)
+    // After a LEFT move, something slides, then a new tile is added; no moves remain => over.
+    Tile[][] tiles = new Tile[GameParams.sideLength][GameParams.sideLength];
+    Integer[][] vals = {
+        {null, 2, 4, 2},
+        {4, 2, 4, 2},
+        {2, 4, 2, 4},
+        {4, 2, 4, 2}
+    };
+    for (int r = 0; r < GameParams.sideLength; r++) {
+        for (int c = 0; c < GameParams.sideLength; c++) {
+            if (vals[r][c] != null) {
+                tiles[r][c] = new Tile(vals[r][c]);
+            }
+        }
+    }
+
+    GameController gc = new GameController();
+    gc.startGame(tiles);
+    assertEquals(GameState.running, gc.getGamestate());
+
+    // Act
+    boolean moved = gc.moveLeft(false);
+
+    // Assert: a move happened, and since there are no merges possible afterwards, the game should be over
+    assertTrue(moved);
+    assertEquals(GameState.over, gc.getGamestate());
+}
