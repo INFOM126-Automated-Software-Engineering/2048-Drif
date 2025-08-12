@@ -91,9 +91,5 @@ Open issues with the right template and label. For questions/ideas, use **Discus
 
 See [`LICENSE`](LICENSE).
 
----
 
-## Acknowledgements
-
-Inspired by the many open-source 2048 implementations.
 
