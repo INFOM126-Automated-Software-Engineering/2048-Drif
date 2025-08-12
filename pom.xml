@@ -50,7 +50,6 @@
         <version>${surefire.version}</version>
       </plugin>
 
-      <!-- ⬇️ ICI: on pointe vers sun_checks.xml -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>
@@ -84,6 +83,7 @@
               <excludes>
                 <exclude>be/unamur/game2048/Game*</exclude>
                 <exclude>be/unamur/game2048/views/**</exclude>
+                <exclude>be/unamur/game2048/helpers/**</exclude>
               </excludes>
             </configuration>
           </execution>
@@ -95,6 +95,7 @@
               <excludes>
                 <exclude>be/unamur/game2048/Game*</exclude>
                 <exclude>be/unamur/game2048/views/**</exclude>
+                <exclude>be/unamur/game2048/helpers/**</exclude>
               </excludes>
             </configuration>
           </execution>
@@ -103,6 +104,11 @@
             <phase>verify</phase>
             <goals><goal>check</goal></goals>
             <configuration>
+              <excludes>
+                <exclude>be/unamur/game2048/Game*</exclude>
+                <exclude>be/unamur/game2048/views/**</exclude>
+                <exclude>be/unamur/game2048/helpers/**</exclude>
+              </excludes>
               <rules>
                 <rule>
                   <element>BUNDLE</element>
@@ -133,6 +139,7 @@
           <excludedClasses>
             <param>be.unamur.game2048.Game</param>
             <param>be.unamur.game2048.views.*</param>
+            <param>be.unamur.game2048.helpers.*</param>
           </excludedClasses>
           <targetTests>
             <param>be.unamur.game2048.*</param>
