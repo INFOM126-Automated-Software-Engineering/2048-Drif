@@ -1,6 +1,6 @@
 # 2048 (Java/Swing)
 
-&#x20; &#x20;
+&#x20;  &#x20;
 
 A clean Java 17 implementation of the classic **2048** game (Swing). The repo ships with a complete CI: tests + coverage (JaCoCo, 80% gate), Checkstyle, PIT mutation testing, release packaging, and telemetry.
 
@@ -54,8 +54,8 @@ java -jar target/2048-1.0-SNAPSHOT.jar
 └─ .github/workflows/
    ├─ ci.yml
    ├─ checkstyle.yml
-   ├─ pit.yml
-   ├─ release.yml (or release-tag-and-upload.yml)
+   ├─ pitest.yml
+   ├─ release-tag-and-upload.yml
    └─ telemetry.yml
 ```
 
@@ -74,6 +74,18 @@ See workflow runs under **Actions**.
 
 ---
 
+## Workflows (summary)
+
+| Workflow                   | Purpose                               | Trigger                        |
+| -------------------------- | ------------------------------------- | ------------------------------ |
+| **CI**                     | Build, tests, JaCoCo ≥ 80% gate       | `push`, `pull_request`         |
+| **Checkstyle (lint)**      | Static analysis / style rules         | `push`, `pull_request`         |
+| **Mutation Testing (PIT)** | Mutation testing robustness           | `push`, `pull_request`         |
+| **Release**                | Publish JAR to GitHub Release         | `push` on tag `v*.*.*`         |
+| **Telemetry**              | Collect durations & results (summary) | `workflow_run` (CI, lint, PIT) |
+
+---
+
 ## Contributing
 
 We welcome contributions! Please read:
@@ -81,7 +93,7 @@ We welcome contributions! Please read:
 - [`docs/CONTRIBUTOR.md`](docs/CONTRIBUTOR.md)
 - [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md)
 
-Open issues with the right template and label.  
+Open issues with the right template and label.\
 For questions, ideas, or general discussions, start a new topic on [**GitHub Discussions**](https://github.com/INFOM126-Automated-Software-Engineering/2048-Drif/discussions/new/choose).
 
 ---
@@ -89,6 +101,4 @@ For questions, ideas, or general discussions, start a new topic on [**GitHub Dis
 ## License
 
 See [`LICENSE`](LICENSE).
-
-
 
