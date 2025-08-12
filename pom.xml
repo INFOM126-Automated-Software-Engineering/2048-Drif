@@ -78,7 +78,7 @@
         </executions>
       </plugin>
 
-      <!-- JaCoCo avec seuil 80% -->
+      <!-- JaCoCo avec seuil 80% + exclusions UI -->
       <plugin>
         <groupId>org.jacoco</groupId>
         <artifactId>jacoco-maven-plugin</artifactId>
@@ -87,12 +87,29 @@
           <execution>
             <id>prepare-agent</id>
             <goals><goal>prepare-agent</goal></goals>
+            <!-- IMPORTANT : exclure de l'instrumentation (donc pas comptés dans la couverture) -->
+            <configuration>
+              <excludes>
+                <!-- Patterns en chemin (slashes), pas en notation package -->
+                <exclude>be/unamur/game2048/Game*</exclude>
+                <exclude>be/unamur/game2048/views/**</exclude>
+              </excludes>
+            </configuration>
           </execution>
+
           <execution>
             <id>report</id>
             <phase>verify</phase>
             <goals><goal>report</goal></goals>
+            <!-- Exclure aussi du rapport HTML pour cohérence -->
+            <configuration>
+              <excludes>
+                <exclude>be/unamur/game2048/Game*</exclude>
+                <exclude>be/unamur/game2048/views/**</exclude>
+              </excludes>
+            </configuration>
           </execution>
+
           <execution>
             <id>check</id>
             <phase>verify</phase>
@@ -145,10 +162,6 @@
             <param>HTML</param>
             <param>XML</param>
           </outputFormats>
-
-          <!-- Optionnel: décommente pendant le debug
-          <failWhenNoMutations>false</failWhenNoMutations>
-          -->
         </configuration>
       </plugin>
 
