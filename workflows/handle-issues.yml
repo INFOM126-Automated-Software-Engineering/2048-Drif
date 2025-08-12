@@ -1,0 +1,28 @@
+name: Handle Issues
+
+on:
+  issues:
+    types: [opened, reopened]
+
+jobs:
+  label-and-comment:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      contents: read
+    steps:
+      - name: Add label
+        uses: actions-ecosystem/action-add-labels@v1
+        with:
+          labels: needs triage
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Comment
+        uses: peter-evans/create-or-update-comment@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            👋 Thanks for opening this issue!
+            The team will review it soon.  
+            Please make sure you've provided enough detail (repro steps, expected/actual results, environment).

@@ -1,0 +1,24 @@
+name: Handle blank issues
+on:
+  issues:
+    types: [opened, edited]
+
+jobs:
+  triage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Label blank or unlabeled issues
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issue = context.payload.issue
+            const hasLabels = (issue.labels || []).length > 0
+            const hasBody = (issue.body || '').trim().length > 40
+            if (!hasLabels || !hasBody) {
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                labels: ['needs triage']
+              })
+            }

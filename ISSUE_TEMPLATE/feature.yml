@@ -1,0 +1,43 @@
+name: "🧩 Feature"
+description: "Propose a new capability or improvement."
+title: "feat: <short summary>"
+labels: [enhancement, needs triage]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem / user story
+      description: "Explain the job-to-be-done or pain point."
+      placeholder: "As a <type of user>, I want <goal> so that <benefit>."
+    validations: { required: true }
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      placeholder: "High-level solution, UX notes, examples"
+    validations: { required: true }
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      placeholder: "Other approaches and why they’re not ideal"
+
+  - type: checkboxes
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      options:
+        - label: Clear success metric defined
+        - label: Unit tests planned/updated
+        - label: No regressions expected in existing features
+
+  - type: dropdown
+    id: impact
+    attributes:
+      label: Impact
+      options:
+        - High (broad user impact)
+        - Medium
+        - Low

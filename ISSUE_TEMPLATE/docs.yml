@@ -1,0 +1,25 @@
+name: "📝 Docs"
+description: "Fix or add documentation."
+title: "docs: <short summary>"
+labels: [documentation, needs triage]
+body:
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope
+      description: "Which pages/sections?"
+      placeholder: "README, CONTRIBUTING, usage guide, API doc…"
+    validations: { required: true }
+
+  - type: textarea
+    id: change
+    attributes:
+      label: Proposed change
+      placeholder: "What to add, remove, or rewrite"
+    validations: { required: true }
+
+  - type: input
+    id: links
+    attributes:
+      label: Related links
+      placeholder: "URLs, file paths, external refs"
