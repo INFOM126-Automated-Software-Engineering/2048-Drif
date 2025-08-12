@@ -8,6 +8,7 @@ Thanks for considering a contribution! This guide explains our workflow, quality
 - Ensure **Checkstyle**, **tests**, **coverage ≥ 80% (JaCoCo)**, and **PIT** all pass.
 - Open a PR to `develop` with a clear description and “Closes #<issueId>”.
 - At least **one review** required; prefer **squash merge**.
+- **(New)** Follow the **branch protection rules** (see §12) and keep PR titles semantic (see §3.2).
 
 ---
 
@@ -50,6 +51,38 @@ Common types:
 
 Keep commits focused and small.
 
+### 3.1) Commit template (recommended)
+Add a local template to streamline Conventional Commits:
+```bash
+git config commit.template .gitmessage.txt
+```
+Suggested `.gitmessage.txt` (add to repo root):
+```text
+<type>(<scope>): <short summary>
+
+# Why / What / How
+# Breaking changes (if any)
+
+Closes #<issueId>
+```
+
+### 3.2) Enforce semantic PR titles (optional but recommended)
+Add a lightweight check so PR titles follow Conventional Commits. Create `.github/workflows/semantic-pr.yml`:
+```yaml
+name: Semantic PR Title
+on:
+  pull_request:
+    types: [opened, edited, synchronize]
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: amannn/action-semantic-pull-request@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+```
+This fails the PR if the title isn’t semantic (e.g., `feat: …`, `fix: …`).
+
 ---
 
 ## 4) Issues → Pull Requests
@@ -62,7 +95,7 @@ Keep commits focused and small.
    mvn -q org.pitest:pitest-maven:mutationCoverage  # optional local PIT
    ```
 5. **Open a PR** to `develop`:
-   - Title with Conventional Commit style.
+   - Title with Conventional Commit style (see §3 / §3.2).
    - Description with context and **“Closes #<issueId>”**.
    - Fill the PR checklist (tests, screenshots if UI).
 
@@ -136,3 +169,28 @@ Email: **semy.drif@student.unamur.be**. We’ll acknowledge within 72h.
 
 ## 11) Code of Conduct
 This project abides by the **Contributor Covenant**. Please read `CODE_OF_CONDUCT.md` before contributing.
+
+---
+
+## 12) Branch protection policy (for `main` and `develop`)
+Configure in **Settings → Code and automation → Branches → Branch protection rules**:
+1. **Require a pull request before merging** (block direct pushes).
+2. **Require at least 1 approving review**.
+3. **Dismiss stale reviews** when new commits are pushed.
+4. **Require status checks to pass**:
+   - `CI`
+   - `Checkstyle (lint)`
+   - `Mutation Testing (PIT)`
+5. **Require branches to be up to date** before merging.
+6. **Restrict who can push to matching branches** (maintainers only).
+7. **Include administrators** (enforce for admins).
+
+> Link this section in onboarding docs and PR templates so contributors know what must be green before merge.
+
+---
+
+## 13) (Optional) Automations to go above expectations
+- **Semantic PR titles**: see §3.2 for the `semantic-pull-request` check.
+- **Commit template**: see §3.1 to standardize messages.
+- **Discussions**: for questions/ideas use the channel → https://github.com/INFOM126-Automated-Software-Engineering/2048-Drif/discussions/new/choose
+
