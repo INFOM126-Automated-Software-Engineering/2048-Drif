@@ -151,6 +151,7 @@ If you find a vulnerability, **do not open a public issue**. Email: **semy.drif@
 - Ensure `main` is green on CI.
 - Tag with SemVer: `vMAJOR.MINOR.PATCH`.
 - `Release` workflow publishes a GitHub Release with the JAR attached.
+- Release frequency: at least one release per month, plus one for each major feature or urgent hotfix.
 - Summarize changes (notable PRs, breaking changes).
 
 ---
