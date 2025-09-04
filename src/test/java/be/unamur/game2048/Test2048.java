@@ -20,6 +20,16 @@ public class Test2048 {
     }
 
     @Test
+    public void testTileEqualsOkTooToo() {
+        // Arrange
+        Tile tile1 = new Tile(2);
+        Tile tile2 = new Tile(2);
+
+        // Assert
+        assertTrue(tile1.equals(tile2));
+    }
+
+    @Test
     public void testTileEqualsDifferent() {
         // Arrange
         Tile tile1 = new Tile(2);
